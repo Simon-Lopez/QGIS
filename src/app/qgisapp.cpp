@@ -10848,8 +10848,10 @@ void QgisApp::toggleMapTips( bool enabled )
 void QgisApp::toggleEditing()
 {
   const QList<QgsMapLayer *> layerList = layerTreeView()->selectedLayers();
+  QgsMessageLog::logMessage( "Simon - toggle editing" );
   if ( !layerList.isEmpty() )
   {
+    QgsMessageLog::logMessage( "Simon - selected layers" );
     // if there are selected layers, try to toggle those.
     // mActionToggleEditing has already been triggered at this point so its checked status has changed
     const bool shouldStartEditing = mActionToggleEditing->isChecked();
@@ -10864,6 +10866,7 @@ void QgisApp::toggleEditing()
   }
   else
   {
+    QgsMessageLog::logMessage( "Simon - NO selected layers" );
     // if there are no selected layers, try to toggle the current layer
     QgsMapLayer *currentLayer =  activeLayer();
     if ( currentLayer && currentLayer->supportsEditing() )

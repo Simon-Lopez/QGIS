@@ -59,6 +59,7 @@
 #include "qgsterrainprovider.h"
 #include "qgsprofilesourceregistry.h"
 #include "qgsnewnamedialog.h"
+#include "qgsmessagelog.h"
 
 #include <QToolBar>
 #include <QProgressBar>
@@ -614,10 +615,12 @@ void QgsElevationProfileWidget::addLayers()
 void QgsElevationProfileWidget::addLayersInternal( const QList<QgsMapLayer *> &layers )
 {
   QList< QgsMapLayer * > updatedLayers;
+  QgsMessageLog::logMessage( QString( "Simon - addLayersInternal %1" ).arg( layers.size() ) );
   if ( !layers.empty() )
   {
     for ( QgsMapLayer *layer : layers )
     {
+      QgsMessageLog::logMessage( QString( "Simon - addLayersInternal with name %1" ).arg( layer->name() ) );
       if ( QgsElevationUtils::enableElevationForLayer( layer ) )
         updatedLayers << layer;
     }
