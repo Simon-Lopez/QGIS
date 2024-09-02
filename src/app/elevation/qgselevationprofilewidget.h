@@ -47,6 +47,7 @@ class QgsLayerTree;
 class QgsLayerTreeRegistryBridge;
 class QgsElevationProfileToolIdentify;
 class QgsElevationProfileToolMeasure;
+class QgsElevationProfileToolCapturePoint;
 class QLabel;
 class QgsProfilePoint;
 class QgsSettingsEntryDouble;
@@ -178,6 +179,7 @@ class QgsElevationProfileWidget : public QWidget
     QgsPlotToolXAxisZoom *mXAxisZoomTool = nullptr;
     QgsPlotToolZoom *mZoomTool = nullptr;
     QgsElevationProfileToolIdentify *mIdentifyTool = nullptr;
+    QgsElevationProfileToolCapturePoint *mCapturePointTool = nullptr;
 
     QgsElevationProfileWidgetSettingsAction *mSettingsAction = nullptr;
 

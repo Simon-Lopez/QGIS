@@ -49,6 +49,7 @@
 #include "qgsshortcutsmanager.h"
 #include "qgselevationprofiletoolidentify.h"
 #include "qgselevationprofiletoolmeasure.h"
+#include "qgselevationprofiletoolcapturepoint.h"
 #include "qgssettingsentryimpl.h"
 #include "qgssettingstree.h"
 #include "qgsmaplayerproxymodel.h"
@@ -184,6 +185,7 @@ QgsElevationProfileWidget::QgsElevationProfileWidget( const QString &name )
   mZoomTool = new QgsPlotToolZoom( mCanvas );
   mXAxisZoomTool = new QgsPlotToolXAxisZoom( mCanvas );
   mIdentifyTool = new QgsElevationProfileToolIdentify( mCanvas );
+  mCapturePointTool = new QgsElevationProfileToolCapturePoint( mCanvas );
 
   mCanvas->setTool( mIdentifyTool );
 
@@ -475,6 +477,26 @@ QgsElevationProfileWidget::QgsElevationProfileWidget( const QString &name )
   {
     close();
   } );
+
+  toolBar->addSeparator();
+
+  // auto mBtnCapturePoint = new QToolButton();
+  // mBtnCapturePoint->setAutoRaise( true );  // useless: feature is automatically turned on when a button is used inside a QToolBar
+  // mBtnCapturePoint->setToolTip( tr( "Add Point Feature" ) );
+  // mBtnCapturePoint->setEnabled( false );
+
+  // toolBar->addWidget( mBtnCapturePoint );
+
+  QAction *capturePointToolAction = new QAction( tr( "Capture Point" ), this );
+  capturePointToolAction->setIcon( QgsApplication::getThemeIcon( QStringLiteral( "/mActionCapturePoint.svg" ) ) );
+  capturePointToolAction->setCheckable( true );
+  capturePointToolAction->setChecked( false );
+  capturePointToolAction->setEnabled( true );
+  mCapturePointTool->setAction( capturePointToolAction );
+
+  connect( capturePointToolAction, &QAction::triggered, mPanTool, [ = ] { mCanvas->setTool( mCapturePointTool ); } );
+
+  toolBar->addAction( capturePointToolAction );
 
   // updating the profile plot is deferred on a timer, so that we don't trigger it too often
   mSetCurveTimer = new QTimer( this );
