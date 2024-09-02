@@ -30,8 +30,6 @@
 #include "qgsmaplayerutils.h"
 
 #include <QHeaderView>
-#include <QContextMenuEvent>
-#include <QMenu>
 #include <QMimeData>
 
 
