@@ -183,6 +183,19 @@ QgsElevationProfileWidget::QgsElevationProfileWidget( const QString &name )
     }
   } );
 
+  connect( mLayerTreeView->proxyModel(), &QgsElevationProfileLayerTreeProxyModel::rowsInserted, this, [&](
+             const QModelIndex & parent, int first, int last )
+  {
+    auto idx = mLayerTreeView->model()->index( first, 0, parent );
+    QgsMessageLog::logMessage( QString( "Simon - rowsInserted %1 %2 %3 %4 %5" ).arg(
+                                 QString( "%1" ).arg( parent.row() ),
+                                 QString( "%1" ).arg( parent.column() ),
+                                 QString( "%1" ).arg( first ),
+                                 QString( "%1" ).arg( last ),
+                                 mLayerTreeView->indexToLayer( idx )->name()
+                               ) );
+  } );
+
   mZoomTool = new QgsPlotToolZoom( mCanvas );
   mXAxisZoomTool = new QgsPlotToolXAxisZoom( mCanvas );
   mIdentifyTool = new QgsElevationProfileToolIdentify( mCanvas );
