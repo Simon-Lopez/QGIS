@@ -1,5 +1,5 @@
 /***************************************************************************
-                          qgselevationprofiletoolcapturepoint.cpp
+                          qgselevationprofiletooladdpoint.cpp
                           ---------------
     begin                : September 2024
     copyright            : (C) 2024 by Simon Lopez
@@ -15,7 +15,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "qgselevationprofiletoolcapturepoint.h"
+#include "qgselevationprofiletooladdpoint.h"
 #include "qgsplotcanvas.h"
 #include "qgsplotmouseevent.h"
 #include "qgsapplication.h"
@@ -30,8 +30,8 @@
 #include "qgsmeshlayer.h"
 #include "qgspointcloudlayer.h"
 
-QgsElevationProfileToolCapturePoint::QgsElevationProfileToolCapturePoint( QgsElevationProfileCanvas *canvas )
-  : QgsPlotTool( canvas, tr( "Capture Point" ) )
+QgsElevationProfileToolAddPoint::QgsElevationProfileToolAddPoint( QgsElevationProfileCanvas *canvas )
+  : QgsPlotTool( canvas, tr( "Add Point Feature" ) )
 {
 //   setCursor( QgsApplication::getThemeCursor( QgsApplication::Cursor::Identify ) );
 
@@ -40,14 +40,14 @@ QgsElevationProfileToolCapturePoint::QgsElevationProfileToolCapturePoint( QgsEle
 //   mRubberBand->setPen( QPen( QBrush( QColor( 254, 58, 29, 100 ) ), 0 ) );
 }
 
-QgsElevationProfileToolCapturePoint::~QgsElevationProfileToolCapturePoint() = default;
+QgsElevationProfileToolAddPoint::~QgsElevationProfileToolAddPoint() = default;
 
-Qgis::PlotToolFlags QgsElevationProfileToolCapturePoint::flags() const
+Qgis::PlotToolFlags QgsElevationProfileToolAddPoint::flags() const
 {
   return Qgis::PlotToolFlag::ShowContextMenu;
 }
 
-void QgsElevationProfileToolCapturePoint::plotPressEvent( QgsPlotMouseEvent *event )
+void QgsElevationProfileToolAddPoint::plotPressEvent( QgsPlotMouseEvent *event )
 {
 //   if ( event->button() != Qt::LeftButton )
 //   {
@@ -73,7 +73,7 @@ void QgsElevationProfileToolCapturePoint::plotPressEvent( QgsPlotMouseEvent *eve
 //   mRubberBand->start( mMousePressStartPos, Qt::KeyboardModifiers() );
 }
 
-void QgsElevationProfileToolCapturePoint::plotReleaseEvent( QgsPlotMouseEvent *event )
+void QgsElevationProfileToolAddPoint::plotReleaseEvent( QgsPlotMouseEvent *event )
 {
 //   if ( event->button() != Qt::LeftButton )
 //   {
@@ -125,7 +125,7 @@ void QgsElevationProfileToolCapturePoint::plotReleaseEvent( QgsPlotMouseEvent *e
 //   identifyTool2D->showIdentifyResults( identifyResults );
 }
 
-void QgsElevationProfileToolCapturePoint::plotMoveEvent( QgsPlotMouseEvent *event )
+void QgsElevationProfileToolAddPoint::plotMoveEvent( QgsPlotMouseEvent *event )
 {
 //   event->ignore();
 //   if ( !mMarquee )

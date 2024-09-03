@@ -15,8 +15,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef QGSELEVATIONPROFILETOOLCAPTUREPOINT_H
-#define QGSELEVATIONPROFILETOOLCAPTUREPOINT_H
+#ifndef QGSELEVATIONPROFILETOOLADDPOINT_H
+#define QGSELEVATIONPROFILETOOLADDPOINT_H
 
 #include "qgsplottool.h"
 #include "qgspoint.h"
@@ -24,15 +24,15 @@
 class QgsPlotRectangularRubberBand;
 class QgsElevationProfileCanvas;
 
-class QgsElevationProfileToolCapturePoint : public QgsPlotTool
+class QgsElevationProfileToolAddPoint : public QgsPlotTool
 {
 
     Q_OBJECT
 
   public:
 
-    QgsElevationProfileToolCapturePoint( QgsElevationProfileCanvas *canvas );
-    ~QgsElevationProfileToolCapturePoint() override;
+    QgsElevationProfileToolAddPoint( QgsElevationProfileCanvas *canvas );
+    ~QgsElevationProfileToolAddPoint() override;
 
     Qgis::PlotToolFlags flags() const override;
     void plotPressEvent( QgsPlotMouseEvent *event ) override;
@@ -51,4 +51,4 @@ class QgsElevationProfileToolCapturePoint : public QgsPlotTool
 
 };
 
-#endif // QGSELEVATIONPROFILETOOLCAPTUREPOINT_H
+#endif // QGSELEVATIONPROFILETOOLADDPOINT_H
